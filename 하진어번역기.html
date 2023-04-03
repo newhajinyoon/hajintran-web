@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="utf-8">
+    <title>하진어 번역기</title>
+  </head>
+  <body>
+    <h1>영어-하진어 번역기</h1>
+    <p>여기에 번역할 문장을 입력하세요:</p>
+    <textarea id="input" rows="10" cols="50"></textarea>
+    <br>
+    <button onclick="encrypt()">영어 -> 하진어로</button>
+    <button onclick="decrypt()">하진어 -> 영어로</button>
+    <br>
+    <p>결과:</p>
+    <textarea id="output" rows="10" cols="50"></textarea><br>
+    <h2><a href="https://papago.naver.com/?sk=ko&tk=en&st">영어를 할줄 몰라요</a></h2>
+    
+    <script>
+      const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+      const ADDITIONAL_SUBSTITUTIONS = {
+        "y": "#",
+        "z": "@",
+        "qj": "wa",
+        "pq": "Я",
+        "qp": "Ф",
+        "tg": "Δ",
+        "cx": "Ξ",
+        "nn": "Й",
+        "dq": "ɖ",
+        "jq": "ㆆ",
+        "jc": "Ю",
+        "gxgt#": "ψ",
+        "dg": "Ʞ",
+        "vj": "Ǔ",
+        "ej": "ā",
+        "yk": "ǚ"
+      };
+      
+      function encrypt() {
+        let plaintext = document.getElementById('input').value.toLowerCase();
+        let ciphertext = '';
+        for (let i = 0; i < plaintext.length; i++) {
+          let index = ALPHABET.indexOf(plaintext[i]);
+          if (index === -1) {
+            ciphertext += plaintext[i];
+          } else {
+            let substitution = ALPHABET[(index + 2) % ALPHABET.length];
+            ciphertext += substitution;
+          }
+        }
+        // Apply additional substitutions
+        for (let pattern in ADDITIONAL_SUBSTITUTIONS) {
+          let replacement = ADDITIONAL_SUBSTITUTIONS[pattern];
+          ciphertext = ciphertext.split(pattern).join(replacement);
+        }
+        document.getElementById('output').value = ciphertext;
+      }
+      
+      function decrypt() {
+        let ciphertext = document.getElementById('input').value;
+        let plaintext = '';
+        // Remove additional substitutions
+        for (let pattern in ADDITIONAL_SUBSTITUTIONS) {
+          let replacement = ADDITIONAL_SUBSTITUTIONS[pattern];
+          ciphertext = ciphertext.split(replacement).join(pattern);
+        }
+        for (let i = 0; i < ciphertext.length; i++) {
+          let index = ALPHABET.indexOf(ciphertext[i]);
+          if (index === -1) {
+            plaintext += ciphertext[i];
+          } else {
+            let substitution = ALPHABET[(index - 2 + ALPHABET.length) % ALPHABET.length];
+            plaintext += substitution;
+          }
+        }
+        document.getElementById('output').value = plaintext;
+      }
+    </script>
+  </body>
+</html>
