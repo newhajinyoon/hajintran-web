@@ -9,12 +9,72 @@
     <h1>영어-하진어 번역기</h1>
     <p>여기에 번역할 문장을 입력하세요:</p>
     <textarea id="input" rows="10" cols="50"></textarea>
+    <p>하진어 알파벳</p>
+    <label>
+      <input type="button" value="Я" onclick="insertText('Я')">
+      
+    </label>
+    <label>
+      <input type="button" value="Ф" onclick="insertText('Ф')">
+      
+    </label>
+    <label>
+      <input type="button" value="Δ" onclick="insertText('Δ')">
+      
+    </label>
+    <label>
+      <input type="button" value="Ξ" onclick="insertText('Ξ')">
+      
+    </label>
+    <label>
+      <input type="button" value="Й" onclick="insertText('Й')">
+      
+    </label>
+    <label>
+      <input type="button" value="ɖ" onclick="insertText('ɖ')">
+      
+    </label>
+    <label>
+      <input type="button" value="ㆆ" onclick="insertText('ㆆ')">
+      
+    </label>
+    <label>
+      <input type="button" value="Ю" onclick="insertText('Ю')">
+      
+    </label>
+    <label>
+      <input type="button" value="ψ" onclick="insertText('ψ')">
+      
+    </label>
+    <label>
+      <input type="button" value="Ʞ" onclick="insertText('Ʞ')">
+      
+    </label>
+    <label>
+      <input type="button" value="Ǔ" onclick="insertText('Ǔ')">
+      
+    </label>
+    <label>
+      <input type="button" value="ā" onclick="insertText('ā')">
+      
+    </label>
+    <label>
+      <input type="button" value="ǚ" onclick="insertText('ǚ')">
+      
+    </label>
+    <br> <br>
+    <script>
+      function insertText(text) {
+        document.getElementById('input').value += text;
+      }
+    </script>
+    
     <br>
     <button onclick="encrypt()">영어 -> 하진어로</button>
     <button onclick="decrypt()">하진어 -> 영어로</button>
     <br>
     <p>결과:</p>
-    <textarea id="output" rows="10" cols="50"></textarea><br>
+    <textarea id="output" rows="10" cols="50" readonly></textarea><br>
     <h2><a href="https://papago.naver.com/?sk=ko&tk=en&st">영어를 할줄 몰라요</a></h2>
     
     <script>
