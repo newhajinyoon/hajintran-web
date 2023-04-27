@@ -72,9 +72,13 @@
     <br>
     <button onclick="encrypt()">영어 -> 하진어로</button>
     <button onclick="decrypt()">하진어 -> 영어로</button>
+    <button onclick="showPronunciation()">발음보기</button>
     <br>
     <p>결과:</p>
     <textarea id="output" rows="10" cols="50" readonly></textarea><br>
+    <p>발음:</p>
+    <textarea id="pronunciation" rows="10" cols="50" readonly></textarea> <br>
+
     <h2><a href="https://papago.naver.com/?sk=ko&tk=en&st">영어를 할줄 몰라요</a></h2>
     
     <script>
@@ -137,6 +141,87 @@
         }
         document.getElementById('output').value = plaintext;
       }
+
+
+
+
+
+      function showPronunciation() {
+  const pronunciationTable = {
+
+    a: "아",
+    b: "비",
+    c: "쓰",
+    d: "디",
+    e: "이",
+    f: "피",
+    g: "그",
+    h: "흐",
+    i: "이",
+    j: "즈",
+    k: "키",
+    l: "르",
+    m: "미",
+    n: "느",
+    o: "오",
+    p: "피",
+    q: "쿠",
+    r: "르",
+    s: "스",
+    t: "든",
+    u: "우",
+    v: "비",
+    w: "우으",
+    x: "스",
+    y: "유",
+    z: "즈",
+    Я: "루",
+    Ф: "위",
+    Δ: "치",
+    Ξ: "사",
+    Й: "은",
+    ɖ: "으드",
+    "@": "웨",
+    "#": "샤",
+    "ㆆ": "흐",
+    Ю: "언",
+    ψ: "일",
+    Ʞ: "커",
+    Ǔ: "요",
+    ā: "안",
+    ǚ: "욘",
+
+  };
+
+  const fixTable = {
+
+    "우아": "와",
+    "키아": "카",
+    "쓰아": "싸",
+    "즈아": "자",
+    "르아": "라",
+    "위르": "윌",
+    "으드": "읃"
+
+};
+  
+  const input = document.getElementById("output").value;
+  const output = document.getElementById("pronunciation");
+  let pronunciation = "";
+  
+  for (let i = 0; i < input.length; i++) {
+    const character = input[i];
+    if (pronunciationTable[character]) {
+      pronunciation += pronunciationTable[character];
+    } else {
+      pronunciation += character;
+    }
+  }
+
+
+  
+  output.value = pronunciation;
+}
     </script>
   </body>
 </html>
